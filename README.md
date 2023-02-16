@@ -22,3 +22,11 @@ Things you may want to cover:
 * Deployment instructions
 
 * ...
+
+## TODO
+
+* add in login/registration
+* add some sort of UI based CRUD
+* add frontend tests
+* add backend tests
+* add in rails logging

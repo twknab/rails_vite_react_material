@@ -9,6 +9,7 @@ const App = () => {
   }, []);
   return (
     <div>
+      {/* TODO: React router would go here to various internal SPAs*/}
       <h1>Users</h1>
       <table>
         <thead>
