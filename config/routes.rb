@@ -4,5 +4,5 @@ Rails.application.routes.draw do
   # Defines the root path route ("/")
   root "homepage#index"
 
-  resources :user, only: [:index]
+  get 'users', to: 'user#index'
 end
