@@ -5,6 +5,7 @@ import App from "../components/App";
 
 ReactDOM.render(
   <React.StrictMode>
+    {/* TODO: Add routes */}
     <App />
   </React.StrictMode>,
   document.getElementById("root")

@@ -3,7 +3,7 @@ import React from "react";
 const App = () => {
   const [data, setData] = React.useState([]);
   React.useEffect(() => {
-    fetch("/users")
+    fetch("/api/v1/users")
       .then((res) => res.json())
       .then((data) => setData(data));
   }, []);
