@@ -15,27 +15,16 @@ beforeEach(() => {
 
 describe("App", () => {
   it("Successfully renders component", () => {
-    const { getByText, queryByRole } = screen;
-    expect(getByText("Welcome")).toBeInTheDocument();
+    expect(screen.getByText("Welcome")).toBeInTheDocument();
     expect(
-      getByText(
+      screen.getByText(
         "Thanks for visiting. Login to begin, or register if this is your " +
         "first time."
       )
     ).toBeInTheDocument();
-    expect(getByText("Register")).toBeInTheDocument();
-    expect(queryByRole("button", { name: "Login" })).toBeInTheDocument();
-  });
-
-  it("Fails with front-end validation errors if missing required fields", () => {
-    // TODO: Finish this test
-  });
-
-  it("Successfully POSTs if user is found and login is correct", () => {
-    // TODO: Finish this test
-  });
-
-  it("Fails with backend validation errors if incorrect information or backend error", () => {
-    // TODO: Finish this test
+    expect(screen.getByPlaceholderText("Name")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
+    expect(screen.getByText("Register")).toBeInTheDocument();
+    expect(screen.queryByRole("button", { name: "Login" })).toBeInTheDocument();
   });
 });
