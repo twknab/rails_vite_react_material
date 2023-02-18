@@ -46,10 +46,11 @@ const Login = () => {
 
   return (
     <Container maxWidth="md" className="Login">
+      <h1>Cool Application</h1>
       <Grid container spacing={4}>
         <Grid item lg={6} xs={12}>
           <Item>
-            <h1>Welcome</h1>
+            <h2>Welcome</h2>
             <p>
               Thanks for visiting. Login to begin, or register if this is your
               first time.
@@ -58,7 +59,7 @@ const Login = () => {
         </Grid>
         <Grid item lg={6} xs={12}>
           <Item>
-            <h1>Login</h1>
+            <h2>Login</h2>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Item>
