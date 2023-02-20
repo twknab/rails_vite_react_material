@@ -10,13 +10,13 @@ import TextField from "@mui/material/TextField";
 
 import "./Login.scss";
 const Login = () => {
-  const [name, setName] = React.useState();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
   
-  const [nameError, setNameError] = React.useState();
-  const [passwordError, setPasswordError] = React.useState();
-  
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [emailError, setEmailError] = React.useState();
+  const [passwordError, setPasswordError] = React.useState();  
 
   const handleLoginSubmit = () => {
     setIsSubmitting(true);
@@ -34,26 +34,26 @@ const Login = () => {
   };
 
   const validateForm = () => {
-    if (!name) setNameError("Name is required");
+    if (!email) setEmailError("Email is required");
     if (!password) setPasswordError("Password is required");
-    return name && password ? true : false;
+    return email && password ? true : false;
   };
 
   const clearPreviousErrors = () => {
-    setNameError();
+    setEmailError();
     setPasswordError();
   }
 
   return (
     <Container maxWidth="md" className="Login">
-      <h1>Cool Application</h1>
+      <h1>😎 Cool Application</h1>
       <Grid container spacing={4}>
         <Grid item lg={6} xs={12}>
           <Item>
             <h2>Welcome</h2>
             <p>
-              Thanks for visiting. Login to begin, or register if this is your
-              first time.
+              👋 Thanks for visiting. Login to begin, or register if this is
+              your first time.
             </p>
           </Item>
         </Grid>
@@ -65,12 +65,12 @@ const Login = () => {
                 <Item>
                   <TextField
                     id="outlined-basic"
-                    label="Name"
-                    placeholder="Name"
+                    label="Email"
+                    placeholder="Email"
                     variant="outlined"
-                    onChange={(e) => setName(e.target.value.trim())}
-                    error={nameError !== undefined}
-                    helperText={nameError}
+                    onChange={(e) => setEmail(e.target.value.trim())}
+                    error={emailError !== undefined}
+                    helperText={emailError}
                     required
                     fullWidth
                   />
