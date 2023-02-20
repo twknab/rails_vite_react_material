@@ -15,17 +15,16 @@ beforeEach(() => {
 
 describe("Login", () => {
   it("Successfully renders component", () => {
-    expect(screen.getByText("Welcome")).toBeInTheDocument();
+    expect(screen.getByText("Welcome!")).toBeInTheDocument();
     expect(
-      screen.getByText(
-        "Thanks for visiting. Login to begin, or register if this is your " +
-          "first time."
-      )
+      screen.getByText("Login below or sign up if this is your first time.")
     ).toBeInTheDocument();
-    expect(screen.getByText("Register")).toBeInTheDocument();
-    expect(screen.getByPlaceholderText("Name")).toBeInTheDocument();
+    expect(screen.getByPlaceholderText("Email")).toBeInTheDocument();
     expect(screen.getByPlaceholderText("Password")).toBeInTheDocument();
     expect(screen.queryByRole("button", { name: "Login" })).toBeInTheDocument();
+    expect(
+      screen.queryByRole("button", { name: "Sign Up" })
+    ).toBeInTheDocument();
   });
 
   it("Fails with front-end validation errors if missing required fields", () => {
