@@ -6,6 +6,9 @@ const config = {
       "jest-transform-stub",
   },
   setupFilesAfterEnv: ["@testing-library/jest-dom/extend-expect"],
+  // transform: {
+  //   "^.+\\.jsx?$": "babel-jest", // added this line
+  // },
 };
 
 module.exports = config;
