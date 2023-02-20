@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
 import LoginIcon from "@mui/icons-material/Login";
+import LoginImage from "../../../assets/images/login.svg";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 
@@ -46,20 +48,26 @@ const Login = () => {
 
   return (
     <Container maxWidth="md" className="Login">
-      <h1>😎 Cool Application</h1>
+      <h1>
+        <AutoAwesomeIcon className="Login__stars" /> SuperCool
+      </h1>
       <Grid container spacing={4}>
         <Grid item lg={6} xs={12}>
           <Item>
-            <h2>Welcome</h2>
-            <p>
-              👋 Thanks for visiting. Login to begin, or register if this is
-              your first time.
-            </p>
+            <img
+              src={LoginImage}
+              alt="Login"
+              className="Login__welcome-image"
+            />
           </Item>
         </Grid>
         <Grid item lg={6} xs={12}>
           <Item>
-            <h2>Login</h2>
+            <h2>
+              Welcome! <AutoAwesomeIcon className="Login__stars" />
+            </h2>
+            {/* <h2>Thanks for visting!</h2> */}
+            <p>Login to begin, or register if this is your first time.</p>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Item>

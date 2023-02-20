@@ -1,4 +1,15 @@
 .Login {
+  &__stars {
+    path {
+      fill: #f37368;
+    }
+  }
+  &__welcome-image {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
   &__button-group {
     margin-top: 15px;
     align-items: center;
