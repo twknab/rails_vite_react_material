@@ -66,8 +66,7 @@ const Login = () => {
             <h2>
               Welcome! <AutoAwesomeIcon className="Login__stars" />
             </h2>
-            {/* <h2>Thanks for visting!</h2> */}
-            <p>Login to begin, or sign up if this is your first time.</p>
+            <p>Login below or sign up if this is your first time.</p>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Item>

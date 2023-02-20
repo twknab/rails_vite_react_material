@@ -83,7 +83,7 @@ const Register = () => {
         <Grid item lg={6} xs={12}>
           <Item>
             <p>
-              Please register a new acccount below and you'll be redirected to
+              Please register a new acccount and you'll be redirected to
               the dashboard.
             </p>
             <img
