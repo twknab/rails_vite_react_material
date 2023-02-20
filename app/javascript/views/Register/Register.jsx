@@ -65,7 +65,7 @@ const Register = () => {
       );
     }
     if (!passwordConfirm || password !== passwordConfirm)
-      setPasswordConfirmError("Password confirmation does not match password");
+      setPasswordConfirmError("Password confirmation must match password");
     return email && firstName && lastName && password && passwordConfirm
       ? true
       : false;
