@@ -1,10 +1,13 @@
 import React from 'react';
+import { useNavigate } from 'react-router-dom';
+
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Item from "@mui/material/Grid";
+import Link from "@mui/material/Link";
 import LoginIcon from "@mui/icons-material/Login";
 import LoginImage from "../../../assets/images/login.svg";
 import Stack from "@mui/material/Stack";
@@ -18,7 +21,9 @@ const Login = () => {
   const [password, setPassword] = React.useState();
   
   const [emailError, setEmailError] = React.useState();
-  const [passwordError, setPasswordError] = React.useState();  
+  const [passwordError, setPasswordError] = React.useState();
+
+  const navigate = useNavigate();
 
   const handleLoginSubmit = () => {
     setIsSubmitting(true);
@@ -115,7 +120,8 @@ const Login = () => {
                       size="large"
                       endIcon={<HowToRegIcon />}
                       color="secondary"
-                      href="/register"
+                      component={Link}
+                      onClick={() => navigate("/register")}
                     >
                       Sign Up
                     </Button>

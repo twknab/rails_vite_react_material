@@ -1,11 +1,14 @@
-import React, { useEffect } from "react";
+import React from "react";
+import { useNavigate } from "react-router-dom";
+
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
-import HowToRegIcon from '@mui/icons-material/HowToReg';
+import HowToRegIcon from "@mui/icons-material/HowToReg";
+import Link from "@mui/material/Link";
 import RegisterImage from "../../../assets/images/register.svg";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
@@ -22,10 +25,12 @@ const Register = () => {
   const [passwordConfirm, setPasswordConfirm] = React.useState();
 
   const [emailError, setEmailError] = React.useState();
-  const [firstNameError, setFirstNameError] = React.useState();  
-  const [lastNameError, setLastNameError] = React.useState();  
-  const [passwordError, setPasswordError] = React.useState();  
-  const [passwordConfirmError, setPasswordConfirmError] = React.useState();  
+  const [firstNameError, setFirstNameError] = React.useState();
+  const [lastNameError, setLastNameError] = React.useState();
+  const [passwordError, setPasswordError] = React.useState();
+  const [passwordConfirmError, setPasswordConfirmError] = React.useState();
+
+  const navigate = useNavigate();
 
   const handleRegisterSubmit = () => {
     setIsSubmitting(true);
@@ -40,7 +45,7 @@ const Register = () => {
     setTimeout(() => {
       setIsSubmitting(false);
     }, 3000);
-  }
+  };
 
   const validateForm = () => {
     if (!email) setEmailError("Email is required");
@@ -83,8 +88,8 @@ const Register = () => {
         <Grid item lg={6} xs={12}>
           <Item>
             <p>
-              Please register a new acccount and you'll be redirected to
-              the dashboard.
+              Please register a new acccount and you'll be redirected to the
+              dashboard.
             </p>
             <img
               src={RegisterImage}
@@ -195,7 +200,8 @@ const Register = () => {
                       size="large"
                       startIcon={<ArrowBackIosNewIcon />}
                       color="secondary"
-                      href="/"
+                      component={Link}
+                      onClick={() => navigate("/")}
                     >
                       Back
                     </Button>
