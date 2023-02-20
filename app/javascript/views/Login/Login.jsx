@@ -1,22 +1,24 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Item from "@mui/material/Grid";
 import LoginIcon from "@mui/icons-material/Login";
+import LoginImage from "../../../assets/images/login.svg";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 
 import "./Login.scss";
 const Login = () => {
-  const [name, setName] = React.useState();
+  const [isSubmitting, setIsSubmitting] = React.useState(false);
+
+  const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
   
-  const [nameError, setNameError] = React.useState();
-  const [passwordError, setPasswordError] = React.useState();
-  
-  const [isSubmitting, setIsSubmitting] = React.useState(false);
+  const [emailError, setEmailError] = React.useState();
+  const [passwordError, setPasswordError] = React.useState();  
 
   const handleLoginSubmit = () => {
     setIsSubmitting(true);
@@ -34,43 +36,48 @@ const Login = () => {
   };
 
   const validateForm = () => {
-    if (!name) setNameError("Name is required");
+    if (!email) setEmailError("Email is required");
     if (!password) setPasswordError("Password is required");
-    return name && password ? true : false;
+    return email && password ? true : false;
   };
 
   const clearPreviousErrors = () => {
-    setNameError();
+    setEmailError();
     setPasswordError();
   }
 
   return (
     <Container maxWidth="md" className="Login">
-      <h1>Cool Application</h1>
+      <h1>
+        <AutoAwesomeIcon className="Login__stars" /> SuperCool
+      </h1>
       <Grid container spacing={4}>
         <Grid item lg={6} xs={12}>
           <Item>
-            <h2>Welcome</h2>
-            <p>
-              Thanks for visiting. Login to begin, or register if this is your
-              first time.
-            </p>
+            <img
+              src={LoginImage}
+              alt="Login"
+              className="Login__welcome-image"
+            />
           </Item>
         </Grid>
         <Grid item lg={6} xs={12}>
           <Item>
-            <h2>Login</h2>
+            <h2>
+              Welcome! <AutoAwesomeIcon className="Login__stars" />
+            </h2>
+            <p>Login below or sign up if this is your first time.</p>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Item>
                   <TextField
                     id="outlined-basic"
-                    label="Name"
-                    placeholder="Name"
+                    label="Email"
+                    placeholder="Email"
                     variant="outlined"
-                    onChange={(e) => setName(e.target.value.trim())}
-                    error={nameError !== undefined}
-                    helperText={nameError}
+                    onChange={(e) => setEmail(e.target.value.trim())}
+                    error={emailError !== undefined}
+                    helperText={emailError}
                     required
                     fullWidth
                   />
@@ -103,9 +110,15 @@ const Login = () => {
                     >
                       Login
                     </Button>
-                    <Link to="/register" className="Login__register">
-                      Register
-                    </Link>
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      endIcon={<HowToRegIcon />}
+                      color="secondary"
+                      href="/register"
+                    >
+                      Sign Up
+                    </Button>
                   </Stack>
                 </Item>
               </Grid>
