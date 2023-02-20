@@ -1,4 +1,15 @@
 .Register {
+  &__welcome-image {
+    max-width: 400px;
+    margin-left: auto;
+    margin-right: auto;
+    display: block;
+  }
+
+  &__Item {
+    margin-bottom: 15px;
+  }
+
   &__button-group {
     align-items: center;
   }

@@ -1,9 +1,9 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
+import HowToRegIcon from "@mui/icons-material/HowToReg";
 import Item from "@mui/material/Grid";
 import LoginIcon from "@mui/icons-material/Login";
 import LoginImage from "../../../assets/images/login.svg";
@@ -67,7 +67,7 @@ const Login = () => {
               Welcome! <AutoAwesomeIcon className="Login__stars" />
             </h2>
             {/* <h2>Thanks for visting!</h2> */}
-            <p>Login to begin, or register if this is your first time.</p>
+            <p>Login to begin, or sign up if this is your first time.</p>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Item>
@@ -111,9 +111,15 @@ const Login = () => {
                     >
                       Login
                     </Button>
-                    <Link to="/register" className="Login__register">
-                      Register
-                    </Link>
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      endIcon={<HowToRegIcon />}
+                      color="secondary"
+                      href="/register"
+                    >
+                      Sign Up
+                    </Button>
                   </Stack>
                 </Item>
               </Grid>

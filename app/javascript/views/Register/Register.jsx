@@ -1,10 +1,12 @@
 import React, { useEffect } from "react";
-import { Link } from "react-router-dom";
+import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
+import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
 import Grid from "@mui/material/Grid";
 import Item from "@mui/material/Grid";
 import HowToRegIcon from '@mui/icons-material/HowToReg';
+import RegisterImage from "../../../assets/images/register.svg";
 import Stack from "@mui/material/Stack";
 import TextField from "@mui/material/TextField";
 
@@ -74,18 +76,31 @@ const Register = () => {
 
   return (
     <Container maxWidth="md" className="Register">
-      <h1>😎 Cool Application</h1>
-      <p>
-        Please register a new acccount below and you'll be redirected to the
-        dashboard. 🏃
-      </p>
+      <h1>
+        <AutoAwesomeIcon className="Login__stars" /> SuperCool
+      </h1>
       <Grid container spacing={4}>
-        <Grid item lg={12} xs={12}>
+        <Grid item lg={6} xs={12}>
           <Item>
-            <h2>Register</h2>
+            <p>
+              Please register a new acccount below and you'll be redirected to
+              the dashboard.
+            </p>
+            <img
+              src={RegisterImage}
+              alt="Register"
+              className="Register__welcome-image"
+            />
+          </Item>
+        </Grid>
+        <Grid item lg={6} xs={12}>
+          <Item>
             <Grid container spacing={2}>
               <Grid item xs={12}>
                 <Item>
+                  <h2>
+                    Sign Up <AutoAwesomeIcon className="Login__stars" />
+                  </h2>
                   <TextField
                     id="outlined-basic"
                     label="Email"
@@ -173,11 +188,17 @@ const Register = () => {
                       onClick={handleRegisterSubmit}
                       disabled={isSubmitting}
                     >
-                      Register
+                      Create Account
                     </Button>
-                    <Link to="/" className="Login__register">
+                    <Button
+                      variant="outlined"
+                      size="large"
+                      startIcon={<ArrowBackIosNewIcon />}
+                      color="secondary"
+                      href="/"
+                    >
                       Back
-                    </Link>
+                    </Button>
                   </Stack>
                 </Item>
               </Grid>
