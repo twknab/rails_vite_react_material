@@ -40,6 +40,7 @@
 # https://vitejs.dev/guide/env-and-mode.html#env-files
 *.local
 
-# Ignore resources and node modules
+# Ignore resources, node modules, env file
 dev_resources
 node_modules
+*.env
