@@ -42,4 +42,4 @@
 
 # Ignore resources and node modules
 dev_resources
-./node_modules
+node_modules
