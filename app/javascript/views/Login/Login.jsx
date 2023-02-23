@@ -1,5 +1,5 @@
-import React from 'react';
-import { useNavigate } from 'react-router-dom';
+import React from "react";
+import { useNavigate } from "react-router-dom";
 
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
@@ -19,7 +19,7 @@ const Login = () => {
 
   const [email, setEmail] = React.useState();
   const [password, setPassword] = React.useState();
-  
+
   const [emailError, setEmailError] = React.useState();
   const [passwordError, setPasswordError] = React.useState();
 
@@ -49,10 +49,10 @@ const Login = () => {
   const clearPreviousErrors = () => {
     setEmailError();
     setPasswordError();
-  }
+  };
 
   return (
-    <Container maxWidth="md" className="Login">
+    <Container maxWidth="lg" className="Login">
       <h1>
         <AutoAwesomeIcon className="Login__stars" /> SuperCool
       </h1>
@@ -67,7 +67,7 @@ const Login = () => {
           </Item>
         </Grid>
         <Grid item lg={6} xs={12}>
-          <Item>
+          <Item sx={{ pt: 3 }}>
             <h2>
               Welcome! <AutoAwesomeIcon className="Login__stars" />
             </h2>

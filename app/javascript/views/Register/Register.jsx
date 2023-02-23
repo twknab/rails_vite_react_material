@@ -80,17 +80,13 @@ const Register = () => {
   };
 
   return (
-    <Container maxWidth="md" className="Register">
+    <Container maxWidth="lg" className="Register">
       <h1>
         <AutoAwesomeIcon className="Login__stars" /> SuperCool
       </h1>
       <Grid container spacing={4}>
         <Grid item lg={6} xs={12}>
-          <Item>
-            <p>
-              Please register a new acccount and you'll be redirected to the
-              dashboard.
-            </p>
+          <Item sx={{ pt: 8 }}>
             <img
               src={RegisterImage}
               alt="Register"
