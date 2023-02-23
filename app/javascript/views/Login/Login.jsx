@@ -95,6 +95,7 @@ const Login = () => {
                     label="Password"
                     placeholder="Password"
                     variant="outlined"
+                    type="password"
                     onChange={(e) => setPassword(e.target.value.trim())}
                     error={passwordError !== undefined}
                     helperText={passwordError}

@@ -152,6 +152,7 @@ const Register = () => {
                     label="Password"
                     placeholder="Password"
                     variant="outlined"
+                    type="password"
                     onChange={(e) => setPassword(e.target.value.trim())}
                     error={passwordError !== undefined}
                     helperText={passwordError}
@@ -167,6 +168,7 @@ const Register = () => {
                     label="Confirm Password"
                     placeholder="Confirm Password"
                     variant="outlined"
+                    type="password"
                     onChange={(e) => setPasswordConfirm(e.target.value.trim())}
                     error={passwordConfirmError !== undefined}
                     helperText={passwordConfirmError}
