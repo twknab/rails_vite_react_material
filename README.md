@@ -27,6 +27,8 @@ Things you may want to cover:
 ## TODO
 
 * use devise to create login/registraton functionality
+  * I might end up coding my own authentication using bcrypt and bail on this for now, or need to take another crack at integrating the API with react
+  * The challenge is since I'm using react and not rails views, I need to figure out how to login/authenticate/reset/logout without using the devise erbs
 * add validations to model fields
 * have basic lorem ipsum dashboard load for general purpose
 * add backend tests for models and controllers
