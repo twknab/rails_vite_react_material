@@ -80,6 +80,7 @@ const Login = () => {
                     label="Email"
                     placeholder="Email"
                     variant="outlined"
+                    type="email"
                     onChange={(e) => setEmail(e.target.value.trim())}
                     error={emailError !== undefined}
                     helperText={emailError}
