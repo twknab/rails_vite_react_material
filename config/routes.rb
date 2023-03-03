@@ -5,8 +5,11 @@ Rails.application.routes.draw do
   root "homepage#index"
 
   # API Routes
+
+  # Users
   get '/api/v1/users', to: 'api/v1/user#index'
-  post '/api/v1/user', to: 'api/v1/user#register'
+  post '/user', to: 'api/v1/user#register'
+  get '/logout', to: 'api/v1/user#logout'
 
   # Redirect all other routes back to front-end React application
   # If we don't do this, refreshing the page will break as Rails will not know

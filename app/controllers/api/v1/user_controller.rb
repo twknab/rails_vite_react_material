@@ -4,7 +4,7 @@ class Api::V1::UserController < ApplicationController
     render json: @users
   end
 
-  # post '/api/v1/user'
+  # post '/user'
   def register
     user = User.new
     user.first_name = params[:first_name]
@@ -13,15 +13,29 @@ class Api::V1::UserController < ApplicationController
     user.password = params[:password]
     user.password_confirmation = params[:password_confirmation]
     begin
-      # TODO: Write backend tests for this logic and ensure any model validation errors get caught in exception block?
-      if user.valid?
-        user.save!
-        # TODO: Setup user session
-        return render json: {success: true, status: 200}
-      end
+      # TODO: Write backend tests for this logic
+      user.save!
+      session[:user_id] = user.id
+      return render json: {success: true, status: 200}
     rescue => exception
       #  TODO: Log error
       return render json: {success: false, status: 422, error: exception.message}
     end
+  end
+
+  # get '/user'
+  def login
+    user = User.find_by(email: params[:email])
+    session[:user_id] = user.authenticate(params[:password]).id
+    unless session[:user_id].nil?
+      return render json: {success: true, status: 200}
+    end
+    return render json: {success: false, status: 422, error: "Email or password is incorrect."}
+  end
+
+  # get '/logout'
+  def logout
+    session.delete(:user_id)
+    redirect_back_or_to '/', allow_other_host: false
   end
 end

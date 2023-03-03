@@ -44,10 +44,9 @@ const Register = () => {
       return;
     }
 
-    console.log("POSTING");
     axios({
       method: "post",
-      url: "/api/v1/user",
+      url: "/user",
       data: {
         first_name: firstName,
         last_name: lastName,
@@ -62,7 +61,7 @@ const Register = () => {
       .then((response) => {
         const res = response.data;
         setIsSubmitting(false);
-        if (res.success !== 200 && res.error) {
+        if (!res.success && res.error) {
           setPostError(res.error);
           return;
         }
