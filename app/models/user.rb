@@ -11,4 +11,11 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
+  include ActiveModel::SecurePassword
+  has_secure_password
+  has_secure_password :recovery_password, validations: false
+
+  validates :email, uniqueness: true
+
+  attr_accessor :password_digest, :recovery_password_digest
 end

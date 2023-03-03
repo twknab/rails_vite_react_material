@@ -1,6 +1,8 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+import { Alert, AlertTitle } from "@mui/material";
 import ArrowBackIosNewIcon from "@mui/icons-material/ArrowBackIosNew";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
@@ -29,6 +31,7 @@ const Register = () => {
   const [lastNameError, setLastNameError] = React.useState();
   const [passwordError, setPasswordError] = React.useState();
   const [passwordConfirmError, setPasswordConfirmError] = React.useState();
+  const [postError, setPostError] = React.useState();
 
   const navigate = useNavigate();
 
@@ -41,34 +44,66 @@ const Register = () => {
       return;
     }
 
-    // TODO: Replace with /api/v1/user/register
-    setTimeout(() => {
-      setIsSubmitting(false);
-    }, 3000);
+    console.log("POSTING");
+    axios({
+      method: "post",
+      url: "/api/v1/user",
+      data: {
+        first_name: firstName,
+        last_name: lastName,
+        email,
+        password,
+        password_confirmation: passwordConfirm,
+        authenticity_token: document
+          .querySelector("meta[name='csrf-token']")
+          .getAttribute("content"),
+      },
+    })
+      .then((response) => {
+        const res = response.data;
+        setIsSubmitting(false);
+        if (res.success !== 200 && res.error) {
+          setPostError(res.error);
+          return;
+        }
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsSubmitting(false);
+      });
   };
 
   const validateForm = () => {
-    if (!email) setEmailError("Email is required");
+    let isValid = true;
+    if (!email) {
+      setEmailError("Email is required");
+      isValid = false;
+    }
     if (!firstName || firstName.length < 2) {
       setFirstNameError(
         "First name is required and must be greater than 2 characters"
       );
+      isValid = false;
     }
     if (!lastName || lastName.length < 2) {
       setLastNameError(
         "Last name is required and must be greater than 2 characters"
       );
+      isValid = false;
     }
     if (!password || password.length < 8) {
       setPasswordError(
         "Password is required and must be at least 8 characters"
       );
+      isValid = false;
     }
-    if (!passwordConfirm || password !== passwordConfirm)
+    if (!passwordConfirm || password !== passwordConfirm) {
       setPasswordConfirmError("Password confirmation must match password");
-    return email && firstName && lastName && password && passwordConfirm
-      ? true
-      : false;
+      isValid = false;
+    }
+
+    return isValid;
   };
 
   const clearPreviousErrors = () => {
@@ -180,6 +215,12 @@ const Register = () => {
               </Grid>
               <Grid item xs={12}>
                 <Item>
+                  {postError && (
+                    <Alert severity="error" sx={{ mb: 2 }}>
+                      <AlertTitle>Sorry, something went wrong</AlertTitle>
+                      {postError}
+                    </Alert>
+                  )}
                   <Stack
                     direction="row"
                     spacing={2}
