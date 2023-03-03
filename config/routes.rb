@@ -7,9 +7,11 @@ Rails.application.routes.draw do
   # API Routes
 
   # Users
-  get '/api/v1/users', to: 'api/v1/user#index'
-  post '/user', to: 'api/v1/user#register'
-  get '/logout', to: 'api/v1/user#logout'
+  # TODO: Generate a new controller for users w/o the api/v1 since you don't really need this -- then move exisitng methods over and update the callsites below
+  # get '/api/v1/users', to: 'api/v1/user#index'
+  post '/user/register', to: 'api/v1/user#register'
+  post '/user/login', to: 'api/v1/user#login'
+  get '/user/logout', to: 'api/v1/user#logout'
 
   # Redirect all other routes back to front-end React application
   # If we don't do this, refreshing the page will break as Rails will not know

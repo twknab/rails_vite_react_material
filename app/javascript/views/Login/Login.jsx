@@ -1,6 +1,8 @@
 import React from "react";
 import { useNavigate } from "react-router-dom";
+import axios from "axios";
 
+import { Alert, AlertTitle } from "@mui/material";
 import AutoAwesomeIcon from "@mui/icons-material/AutoAwesome";
 import Button from "@mui/material/Button";
 import Container from "@mui/material/Container";
@@ -22,6 +24,7 @@ const Login = () => {
 
   const [emailError, setEmailError] = React.useState();
   const [passwordError, setPasswordError] = React.useState();
+  const [postError, setPostError] = React.useState();
 
   const navigate = useNavigate();
 
@@ -34,21 +37,50 @@ const Login = () => {
       return;
     }
 
-    // TODO: Submit POST request to /api/v1/users/login
-    setTimeout(() => {
-      setIsSubmitting(false);
-    }, 3000);
+    axios({
+      method: "post",
+      url: "/user/login",
+      data: {
+        email,
+        password,
+        authenticity_token: document
+          .querySelector("meta[name='csrf-token']")
+          .getAttribute("content"),
+      },
+    })
+      .then((response) => {
+        const res = response.data;
+        setIsSubmitting(false);
+        if (!res.success && res.error) {
+          setPostError(res.error);
+          return;
+        }
+        navigate("/dashboard");
+      })
+      .catch((error) => {
+        console.log(error);
+        setIsSubmitting(false);
+      });
   };
 
+  // FIXME: This logic should be improved
   const validateForm = () => {
-    if (!email) setEmailError("Email is required");
-    if (!password) setPasswordError("Password is required");
-    return email && password ? true : false;
+    let isValid = true;
+    if (!email) {
+      setEmailError("Email is required");
+      isValid = false;
+    }
+    if (!password) {
+      setPasswordError("Password is required");
+      isValid = false;
+    }
+    return isValid;
   };
 
   const clearPreviousErrors = () => {
     setEmailError();
     setPasswordError();
+    setPostError();
   };
 
   return (
@@ -103,6 +135,12 @@ const Login = () => {
                     required
                     fullWidth
                   />
+                  {postError && (
+                    <Alert severity="error" sx={{ mb: 2, mt: 2 }}>
+                      <AlertTitle>Sorry, something went wrong</AlertTitle>
+                      {postError}
+                    </Alert>
+                  )}
                   <Stack
                     direction="row"
                     spacing={2}

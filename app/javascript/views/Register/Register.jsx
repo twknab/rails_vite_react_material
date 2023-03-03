@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 
@@ -46,7 +46,7 @@ const Register = () => {
 
     axios({
       method: "post",
-      url: "/user",
+      url: "/user/register",
       data: {
         first_name: firstName,
         last_name: lastName,
@@ -73,9 +73,9 @@ const Register = () => {
       });
   };
 
-  // TODO: This is a hacky way to do this, consider using useEffect in some way
-  // to pickup the changes to `emailError`, `firstNameError`, `lastNameError`, etc
-  // and block submission if any are present.
+  // FIXME: This logic should be improved, this is a hacky way to do this,
+  // consider using useEffect in some way to pickup the changes to `emailError`,
+  // `firstNameError`, `lastNameError`, etc and block submission if any are present.
   // This was a work around to keep moving as I was trying to check the value of the state constant,
   // and the value is not updated until the next render.
   // See: https://beta.reactjs.org/reference/react/useState#ive-updated-the-state-but-logging-gives-me-the-old-value
@@ -117,6 +117,7 @@ const Register = () => {
     setLastNameError();
     setPasswordError();
     setPasswordConfirmError();
+    setPostError();
   };
 
   return (

@@ -6,12 +6,13 @@ class Api::V1::UserController < ApplicationController
 
   # post '/user'
   def register
-    user = User.new
-    user.first_name = params[:first_name]
-    user.last_name = params[:last_name]
-    user.email = params[:email]
-    user.password = params[:password]
-    user.password_confirmation = params[:password_confirmation]
+    user = User.new(
+      first_name: params[:first_name],
+      last_name: params[:last_name],
+      email: params[:email],
+      password: params[:password], # TODO: You might be needing to save the digest here
+      password_confirmation: params[:password_confirmation]
+    )
     begin
       # TODO: Write backend tests for this logic
       user.save!
@@ -26,11 +27,20 @@ class Api::V1::UserController < ApplicationController
   # get '/user'
   def login
     user = User.find_by(email: params[:email])
-    session[:user_id] = user.authenticate(params[:password]).id
-    unless session[:user_id].nil?
+    begin
+      if user.nil?
+        raise "Email or password is incorrect."
+      end
+      authenticated_user = user.authenticate(params[:password])
+      if !authenticated_user
+        raise "Email or password is incorrect."
+      end
+      session[:user_id] = authenticated_user.id
       return render json: {success: true, status: 200}
+    rescue => exception
+      # TODO: Log error
+      return render json: {success: false, status: 422, error: exception.message}
     end
-    return render json: {success: false, status: 422, error: "Email or password is incorrect."}
   end
 
   # get '/logout'
