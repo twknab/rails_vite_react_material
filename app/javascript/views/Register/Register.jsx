@@ -74,6 +74,12 @@ const Register = () => {
       });
   };
 
+  // TODO: This is a hacky way to do this, consider using useEffect in some way
+  // to pickup the changes to `emailError`, `firstNameError`, `lastNameError`, etc
+  // and block submission if any are present.
+  // This was a work around to keep moving as I was trying to check the value of the state constant,
+  // and the value is not updated until the next render.
+  // See: https://beta.reactjs.org/reference/react/useState#ive-updated-the-state-but-logging-gives-me-the-old-value
   const validateForm = () => {
     let isValid = true;
     if (!email) {
