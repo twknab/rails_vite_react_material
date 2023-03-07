@@ -6,15 +6,8 @@ class Api::V1::UserController < ApplicationController
 
   # post '/user'
   def register
-    user = User.new(
-      first_name: params[:first_name],
-      last_name: params[:last_name],
-      email: params[:email],
-      password: params[:password], # TODO: You might be needing to save the digest here
-      password_confirmation: params[:password_confirmation]
-    )
+    user = User.new(user_params)
     begin
-      # TODO: Write backend tests for this logic
       user.save!
       session[:user_id] = user.id
       return render json: {success: true, status: 200}
@@ -47,5 +40,10 @@ class Api::V1::UserController < ApplicationController
   def logout
     session.delete(:user_id)
     redirect_back_or_to '/', allow_other_host: false
+  end
+
+  private
+  def user_params
+    params.require(:user).permit(:first_name, :last_name, :email, :password, :password_confirmation)
   end
 end
