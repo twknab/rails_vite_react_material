@@ -5,7 +5,7 @@ class Api::V1::UserController < ApplicationController
   end
 
   # post '/user'
-  def register
+  def create
     user = User.new(user_params)
     begin
       user.save!

@@ -9,7 +9,7 @@ Rails.application.routes.draw do
   # Users
   # TODO: Generate a new controller for users w/o the api/v1 since you don't really need this -- then move exisitng methods over and update the callsites below
   # get '/api/v1/users', to: 'api/v1/user#index'
-  post '/user/register', to: 'api/v1/user#register'
+  post '/user/register', to: 'api/v1/user#create'
   post '/user/login', to: 'api/v1/user#login'
   get '/user/logout', to: 'api/v1/user#logout'
 
