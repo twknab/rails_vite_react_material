@@ -23,8 +23,6 @@ class User < ApplicationRecord
   validates :last_name, length: {minimum: 2, maximum: 100}, presence: true
   validates :password, length: {minimum: 8, maximum: 25}, presence: true
 
-  attr_accessor :password_digest, :recovery_password_digest
-
   private
   def downcase_email
     self.email = email.downcase
